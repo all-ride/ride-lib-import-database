@@ -47,7 +47,7 @@ class AbstractDatabaseProvider implements Provider {
      * Constructs a new database provider
      * @return null
      */
-    public function __construct(DatabaseManager $databaseManager, ReflectionHelper $reflectionHelper, $connction = null) {
+    public function __construct(DatabaseManager $databaseManager, ReflectionHelper $reflectionHelper, $connection = null) {
         $this->databaseManager = $databaseManager;
         $this->connection = $this->databaseManager->getConnection($connection);
         $this->reflectionHelper = $reflectionHelper;
