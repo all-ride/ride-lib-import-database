@@ -22,8 +22,9 @@ class DatabaseSourceProvider extends AbstractDatabaseProvider implements SourceP
      * @param string $table Name of the table
      * @return null
      */
-    public function setTable($table) {
+    public function setTable($table, $limit = 0) {
         $this->sql = null;
+        $this->limit = $limit;
 
         parent::setTable($table);
     }
@@ -51,13 +52,17 @@ class DatabaseSourceProvider extends AbstractDatabaseProvider implements SourceP
     public function preImport(Importer $importer) {
         if ($this->sql) {
             $sql = $this->sql;
-        } elseif ($table) {
+        } elseif ($this->table) {
             $sql = 'SELECT * FROM ' . $this->connection->quoteIdentifier($this->table);
+
+            if ($this->limit) {
+                $sql .= ' LIMIT ' . $this->limit;
+            }
         } else {
             throw new ImportException('Could not execute source query, no table of sql set');
         }
 
-        $this->result = $this->connection->execute($sql);
+        $this->result = $this->connection->execute($sql)->getRows();
         reset($this->result);
     }
 
