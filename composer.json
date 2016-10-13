@@ -2,7 +2,6 @@
     "name": "ride/lib-import-database",
     "description": "Database providers for the import library of the Ride framework",
     "license": "MIT",
-    "version": "0.1.1",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -10,8 +9,8 @@
         }
     ],
     "require": {
-        "ride/lib-import": ">=0.2.0",
-        "ride/lib-database": ">=0.1.2"
+        "ride/lib-import": "^1.0.0",
+        "ride/lib-database": "^1.0.0"
     },
     "autoload": {
         "psr-0": {
