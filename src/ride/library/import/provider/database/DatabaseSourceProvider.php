@@ -72,12 +72,11 @@ class DatabaseSourceProvider extends AbstractDatabaseProvider implements SourceP
      * value to import as value. Null is returned when all rows are processed.
      */
     public function getRow() {
-        $row = each($this->result);
+        $row = current($this->result);
+
         if ($row === false) {
             return null;
         }
-
-        $row = $row['value'];
 
         $result = array();
         foreach ($this->columnNames as $columnName) {
